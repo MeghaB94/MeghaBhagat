@@ -1,8 +1,12 @@
+@import url(assets/fontawesome-all.min.css);
+@import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400";
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
+  transition: margin-left 0.5s; /* Smooth transition effect */
 }
 
 header,
@@ -10,51 +14,238 @@ footer {
   background-color: #222;
   color: white;
   text-align: center;
-  padding: 10px 0;
-  position: relative; /* For positioning the menu icon */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu-icon {
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  font-size: 24px;
+  font-size: 1.9em;
   cursor: pointer;
-}
-
-nav.hidden {
-  display: none;
-}
-
-nav ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-nav ul li a {
+  width: 1.6em;
+  height: 1.6em;
+  z-index: 1;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-title {
+  width: calc(100% - 10em);
+  margin: unset;
+  margin-left: 3em;
+}
+@media screen and (max-width: 580px) {
+  .header-title {
+    width: calc(100% - 7em);
+    margin-left: unset;
+  }
+}
+.sidenav {
+  height: 100%;
+  width: 0; /* Side nav is hidden by default */
+  position: fixed;
+  z-index: 1; /* Ensures it stays on top */
+  top: 0;
+  left: 0;
+  background-color: #111; /* Dark background for the side nav */
+  overflow-x: hidden; /* Prevents horizontal scroll */
+  transition: 0.5s; /* Smooth transition for opening and closing the menu */
+  padding-top: 60px; /* Space from the top */
+}
+
+.sidenav a {
+  padding: 30px 15px 10px 30px;
   text-decoration: none;
-  padding: 10px;
+  font-size: 25px;
+  color: #ccc;
   display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #fff; /* White text color on hover */
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.text-center {
+  text-align: center;
 }
 
 main {
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  /*margin-left: 5%; /* Ensures content is not hidden behind the sidenav */
+}
+.hidden {
+  display: none;
 }
 
+.content-section {
+  display: none; /* Hide all sections by default */
+}
+
+.content-section.active {
+  display: flex; /* Only display the active section */
+  flex-wrap: wrap;
+}
+.content-section h2.text-center {
+  width: 100%;
+}
+.content-section section {
+  -moz-flex-grow: 0;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+  -moz-flex-shrink: 1;
+  -webkit-flex-shrink: 1;
+  -ms-flex-shrink: 1;
+  flex-shrink: 1;
+}
 .project {
   background-color: white;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  width: 80%;
-  margin: 20px;
-  padding: 20px;
+  width: calc(33.3333% - 4em);
+  margin: 1em;
+  padding: 1em;
   text-align: center;
+}
+
+@media screen and (max-width: 1680px) {
+  .project {
+    width: calc(50% - 4em);
+  }
+}
+@media screen and (max-width: 800px) {
+  .project {
+    width: calc(50% - 3em);
+    margin: 0.5em;
+  }
+}
+@media screen and (max-width: 580px) {
+  section.project {
+    width: calc(100% - 4em);
+  }
 }
 
 .project a {
   color: #0077cc;
   text-decoration: none;
+}
+
+.background-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.profile-image img,
+.background-image {
+  width: 200px; /* Adjust the size as needed */
+  height: auto;
+  border-radius: 50%; /* Circular image */
+  margin-bottom: 20px;
+}
+.profile-image + section {
+  width: calc(100% - 200px);
+}
+@media screen and (max-width: 580px) {
+  .profile-image {
+    margin: auto;
+  }
+  .profile-image + section {
+    width: 100%;
+  }
+}
+
+.project-image {
+  width: 60%; /* Adjust the size as needed */
+  height: auto;
+  /*border-radius: 50%; /* Circular image */
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.about-me p {
+  color: #666;
+  font-size: 16px;
+  width: 80%; /* Adjust width as needed for optimal reading */
+  margin: auto; /* Centers the text block */
+  text-align: justify;
+}
+
+.project p {
+  color: #150101;
+  font-size: 16px;
+  width: 80%; /* Adjust width as needed for optimal reading */
+  margin: auto; /* Centers the text block */
+}
+
+ul.icons {
+  cursor: default;
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.icons li {
+  display: inline-block;
+  padding: 0 0.65em 0 0;
+}
+
+.icon {
+  text-decoration: none;
+  -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  border-bottom: none;
+  position: relative;
+}
+
+.icon:before {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  text-transform: none !important;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+}
+
+.icon.alt {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+}
+.icon.alt {
+  display: inline-block;
+  border: solid 1px;
+  border-radius: 100%;
+}
+
+.icon.alt:before {
+  display: block;
+  font-size: 1.25em;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+}
+
+.icon.brands:before {
+  font-family: "Font Awesome 5 Brands";
+}
+.icon > .label {
+  display: none;
 }
